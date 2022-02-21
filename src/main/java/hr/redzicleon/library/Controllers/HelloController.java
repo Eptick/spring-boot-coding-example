@@ -10,4 +10,14 @@ public class HelloController {
     public String index() {
         return "Hello World";
     }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "Hello Admin";
+    }
+
+    @GetMapping("/publisher")
+    public String publisher() {
+        return "Hello publisher";
+    }
 }
