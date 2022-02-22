@@ -34,6 +34,29 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!--
+			This was chosen becuase it provides methods that are faster than
+			the basic spring-boot-starter-jpa with fewer LOC
+		-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!-- ISBN and other validations-->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.7</version>
+		</dependency>
+
+		<!-- Enables integration with the authorization server
+			and sets up a common security rules -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>

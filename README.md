@@ -1,3 +1,5 @@
+## Dependencies
+postgresql 13+
 ## Running the application
 
 Run this command from the terminal in the source folder
