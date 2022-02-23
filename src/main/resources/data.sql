@@ -11,19 +11,25 @@ insert into books values(ISBN13('960-425-059-0'), 'Book 3', 'Genre 3', default, 
 insert into books values(ISBN13('80-902734-1-6'), 'Book 4', 'Genre 4', default, default );
 insert into books values(ISBN13('85-359-0277-5'), 'Book 5', 'Genre 5', default, default );
 
+CREATE OR REPLACE FUNCTION getAuthorId(name_param text) RETURNS uuid AS '
+    BEGIN
+        return (select author_id from authors where name = name_param);
+    END;
+' LANGUAGE plpgsql;
+
 insert into authors_books values (
-    (select author_id from authors where name = '1. Plato'),
+    getAuthorId('1. Plato'),
     '99921-58-10-7'
 );
 insert into authors_books values (
-    (select author_id from authors where name = '2. Voltaire'),
+    getAuthorId('2. Voltaire'),
     '960-425-059-0'
 );
 insert into authors_books values (
-    (select author_id from authors where name = '2. Voltaire'),
+    getAuthorId('2. Voltaire'),
     '80-902734-1-6'
 );
 insert into authors_books values (
-    (select author_id from authors where name = '4. Confucius'),
+    getAuthorId('4. Confucius'),
     '85-359-0277-5'
 );
