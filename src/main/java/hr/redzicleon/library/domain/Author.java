@@ -38,7 +38,7 @@ public class Author extends AuditableEntity {
     @JsonIgnore
     @JoinTable(name = "authors_books",
         joinColumns = @JoinColumn(name = "author_id"),
-        inverseJoinColumns = @JoinColumn(name = "book_id")
+        inverseJoinColumns = @JoinColumn(name = "book_isbn")
     )
     private Set<Book> books = new HashSet<>();
 

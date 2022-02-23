@@ -1,7 +1,5 @@
 package hr.redzicleon.library.domain;
 
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,31 +14,21 @@ import hr.redzicleon.library.domain.audit.AuditableEntity;
 
 @Entity
 @Table(name = "books")
-@SQLInsert(sql = "insert into books (created_at, updated_at, isbn, genre, title, book_id) values (?, ?, isbn13(?), ?, ?, ?)")
+@SQLInsert(sql = "insert into books (created_at, updated_at, genre, title, isbn) values (?, ?, ?, ?, isbn13(?))")
 public class Book extends AuditableEntity {
 
     @Id
-    @Column(name = "book_id", updatable = false, nullable = false)
+    @ISBN
+    @Column(name = "ISBN", updatable = false, nullable = false)
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private UUID bookId;
+    private String ISBN;
 
     @Column(name = "title", updatable = true, nullable = false)
     private String title;
 
-    @ISBN
-    @Column(name = "ISBN", updatable = true, nullable = false)
-    private String ISBN;
-
     @Column(name = "genre", updatable = true, nullable = false)
     private String genre;
 
-    public UUID getBookId() {
-        return this.bookId;
-    }
-
-    public void setBookId(UUID bookId) {
-        this.bookId = bookId;
-    }
 
     public String getTitle() {
         return this.title;

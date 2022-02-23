@@ -33,30 +33,31 @@ CREATE TABLE authors (
     them nullable. I think that the decision of what that field should be could
     have consequences in the future.
     */
-    name        TEXT NOT NULL,
+    name        TEXT NOT NULL, -- unique not applicable
     created_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(author_id)
 );
 
 CREATE TABLE books (
-    book_id     uuid DEFAULT gen_random_uuid(),
-    title       TEXT NOT NULL,
-    ISBN        ISBN13 NOT NULL, -- https://www.postgresql.org/docs/14/isn.html
-    genre       text NOT NULL,
+    -- https://www.postgresql.org/docs/14/isn.html
+    ISBN        ISBN13 NOT NULL,
+
+    title       TEXT NOT NULL, -- unique not applicable
+    genre       text NOT NULL, -- unique not applicable
     created_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(book_id)
+    PRIMARY KEY(ISBN)
 );
 
 CREATE TABLE authors_books (
     author_id   uuid REFERENCES authors(author_id),
-    book_id     uuid REFERENCES books(book_id),
+    book_isbn   isbn13 REFERENCES books(ISBN),
     created_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(author_id, book_id)
+    PRIMARY KEY(author_id, book_isbn)
 );
 
-CREATE INDEX ON authors ((lower(name)));
+CREATE INDEX ON authors ((lower(name)), created_at );
 CREATE INDEX ON books ((lower(title)), created_at );
 
 CREATE OR REPLACE FUNCTION update_updated_at()
