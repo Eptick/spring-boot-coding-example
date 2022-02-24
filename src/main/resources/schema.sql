@@ -3,7 +3,7 @@ DROP TRIGGER IF EXISTS audit_books_updated_at on books CASCADE;
 DROP TABLE IF EXISTS authors_books;
 DROP TABLE IF EXISTS authors;
 DROP TABLE IF EXISTS books;
-CREATE EXTENSION IF NOT EXISTS isn; -- adds support for ISBN types
+-- CREATE EXTENSION IF NOT EXISTS isn; -- JPA does not agree well with this
 
 /*
 **DISCLAIMER**
@@ -41,7 +41,7 @@ CREATE TABLE authors (
 
 CREATE TABLE books (
     -- https://www.postgresql.org/docs/14/isn.html
-    ISBN        ISBN13 NOT NULL,
+    ISBN        TEXT NOT NULL,
 
     title       TEXT NOT NULL, -- unique not applicable
     genre       text NOT NULL, -- unique not applicable
@@ -52,7 +52,7 @@ CREATE TABLE books (
 
 CREATE TABLE authors_books (
     author_id   uuid REFERENCES authors(author_id),
-    book_isbn   isbn13 REFERENCES books(ISBN),
+    book_isbn   TEXT REFERENCES books(ISBN),
     created_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(author_id, book_isbn)
 );

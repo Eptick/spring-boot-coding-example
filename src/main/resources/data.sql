@@ -5,11 +5,11 @@ insert into authors values ('0498e926-f7c7-4a21-9655-bad190c04d29', '4. Confuciu
 insert into authors values ('35ecf6e8-9216-4e67-a3ea-66ecd2d19a66', '5. Miroslav Krleža', default, default);
 
 
-insert into books values(ISBN13('99921-58-10-7'), 'Book 1', 'Genre 1', default, default );
-insert into books values(ISBN13('9971-5-0210-0'), 'Book 2', 'Genre 2', default, default );
-insert into books values(ISBN13('960-425-059-0'), 'Book 3', 'Genre 3', default, default );
-insert into books values(ISBN13('80-902734-1-6'), 'Book 4', 'Genre 4', default, default );
-insert into books values(ISBN13('85-359-0277-5'), 'Book 5', 'Genre 5', default, default );
+insert into books values('99921-58-10-7', 'Book 1', 'Genre 1', default, default );
+insert into books values('9971-5-0210-0', 'Book 2', 'Genre 2', default, default );
+insert into books values('960-425-059-0', 'Book 3', 'Genre 3', default, default );
+insert into books values('80-902734-1-6', 'Book 4', 'Genre 4', default, default );
+insert into books values('85-359-0277-5', 'Book 5', 'Genre 5', default, default );
 
 CREATE OR REPLACE FUNCTION getAuthorId(name_param text) RETURNS uuid AS '
     BEGIN
