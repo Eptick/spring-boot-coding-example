@@ -36,7 +36,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Object> handleConstraintViolationException(
             Exception exception) {
-        return ResponseEntity.badRequest().body(exception.getMessage());
+        return ResponseEntity.badRequest().body(null);
     }
 
     @ExceptionHandler(javax.validation.ConstraintViolationException.class)
