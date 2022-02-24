@@ -29,7 +29,7 @@ public class Author extends AuditableEntity {
     @Id
     @Column(name = "author_id", updatable = false, nullable = false)
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private UUID authorId;
+    private UUID id;
 
     @Column(name = "name", updatable = true, nullable = false)
     private String name;
@@ -48,12 +48,12 @@ public class Author extends AuditableEntity {
          "GROUP BY authors.author_id)")
     private int bookCount;
 
-    public UUID getAuthorId() {
-        return this.authorId;
+    public UUID getId() {
+        return this.id;
     }
 
-    public void setAuthorId(UUID authorId) {
-        this.authorId = authorId;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName() {
