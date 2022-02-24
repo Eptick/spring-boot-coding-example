@@ -1,11 +1,19 @@
 package hr.redzicleon.library.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.annotations.SQLInsert;
 
@@ -28,6 +36,14 @@ public class Book extends AuditableEntity {
 
     @Column(name = "genre", updatable = true, nullable = false)
     private String genre;
+
+    @ManyToMany()
+    @JsonIgnore
+    @JoinTable(name = "authors_books",
+        joinColumns = @JoinColumn(name = "book_isbn"),
+        inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private Set<Author> authors = new HashSet<>();
 
 
     public String getTitle() {

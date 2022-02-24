@@ -2,9 +2,12 @@ package hr.redzicleon.library.controllers;
 
 import java.util.UUID;
 
+import com.querydsl.core.types.Predicate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -30,8 +33,10 @@ public class BooksController {
     public Page<Book> index(@PageableDefault(
         sort = "createdAt",
         direction = Sort.Direction.DESC)
-        Pageable pageable) {
-        return booksRepository.findAll(pageable);
+        Pageable pageable,
+        @QuerydslPredicate(root = Book.class) Predicate predicate)
+    {
+        return booksRepository.findAll(predicate, pageable);
     }
 
     @PostMapping("")
