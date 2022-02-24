@@ -1,8 +1,8 @@
-insert into authors values (default, '1. Plato', default, default);
-insert into authors values (default, '2. Voltaire', default, default);
-insert into authors values (default, '3. Homer', default, default);
-insert into authors values (default, '4. Confucius', default, default);
-insert into authors values (default, '5. Miroslav Krleža', default, default);
+insert into authors values ('0096d201-d4f2-43ed-9973-dbf77e9b06d9', '1. Plato', default, default);
+insert into authors values ('a26c3451-8809-4fe4-a5d4-c2270bfa0b90', '2. Voltaire', default, default);
+insert into authors values ('f991ff57-e897-48d2-a299-e524b9ef3047', '3. Homer', default, default);
+insert into authors values ('0498e926-f7c7-4a21-9655-bad190c04d29', '4. Confucius', default, default);
+insert into authors values ('35ecf6e8-9216-4e67-a3ea-66ecd2d19a66', '5. Miroslav Krleža', default, default);
 
 
 insert into books values(ISBN13('99921-58-10-7'), 'Book 1', 'Genre 1', default, default );
