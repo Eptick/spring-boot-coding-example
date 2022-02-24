@@ -2,12 +2,19 @@ package hr.redzicleon.library.controllers;
 
 import java.util.UUID;
 
+import com.querydsl.core.types.Predicate;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import hr.redzicleon.library.domain.Author;
+import hr.redzicleon.library.domain.Book;
 import hr.redzicleon.library.services.AuthorsBooksService;
 
 @RestController
@@ -17,6 +24,11 @@ public class AuthorsBooksController {
 
     public AuthorsBooksController(AuthorsBooksService authorsBooksService) {
         this.authorsBooksService = authorsBooksService;
+    }
+
+    @GetMapping("")
+    public Page<Book> getBooksByAuthor(@QuerydslPredicate(root = Book.class) Predicate predicate, @PathVariable("uuid") UUID uuid, Pageable pageable) {
+        return this.authorsBooksService.findAllBooksByAuthor(uuid, pageable, predicate);
     }
 
     @PostMapping("{isbn}")

@@ -13,6 +13,7 @@ import hr.redzicleon.library.domain.Book;
 import hr.redzicleon.library.domain.QBook;
 
 public interface BooksRepository extends PagingAndSortingRepository<Book, String>, QuerydslPredicateExecutor<Book>, QuerydslBinderCustomizer<QBook> {
+
     @Override
     default void customize(QuerydslBindings bindings, QBook book) {
         bindings.bind(book.authors.any().name).first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);
