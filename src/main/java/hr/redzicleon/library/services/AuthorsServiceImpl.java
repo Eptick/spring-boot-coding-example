@@ -1,5 +1,10 @@
 package hr.redzicleon.library.services;
 
+import java.util.Optional;
+import java.util.UUID;
+
+import javax.persistence.EntityNotFoundException;
+
 import com.querydsl.core.types.Predicate;
 
 import org.modelmapper.ModelMapper;
@@ -28,7 +33,19 @@ public class AuthorsServiceImpl implements AuthorsService {
         return this.authorsRepository.findAll(predicate, pageable);
     }
 
+    public Author getAuthor(UUID uuid) {
+        Optional<Author> author = this.authorsRepository.findById(uuid);
+        if (author.isEmpty()) {
+            throw new EntityNotFoundException();
+        }
+        return author.get();
+    }
+
     public Author saveAuthor(CreateAuthorDto author) {
         return this.authorsRepository.save(this.mapper.map(author, Author.class));
+    }
+
+    public void deleteAuthor(UUID uuid) {
+        this.authorsRepository.deleteById(uuid);
     }
 }

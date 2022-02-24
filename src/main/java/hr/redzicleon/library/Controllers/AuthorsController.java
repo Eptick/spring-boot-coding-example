@@ -1,5 +1,7 @@
 package hr.redzicleon.library.controllers;
 
+import java.util.UUID;
+
 import javax.validation.Valid;
 
 import com.querydsl.core.types.Predicate;
@@ -9,7 +11,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,8 +39,18 @@ public class AuthorsController {
         return this.authorsService.getAuthors(predicate, pageable);
     }
 
+    @GetMapping("{uuid}")
+    public Author getAuthor(@PathVariable("uuid") UUID uuid) {
+        return this.authorsService.getAuthor(uuid);
+    }
+
     @PostMapping("")
     public Author createAuthor(@Valid @RequestBody CreateAuthorDto dto) {
         return this.authorsService.saveAuthor(dto);
+    }
+
+    @DeleteMapping("{uuid}")
+    public void deleteAuthor(@PathVariable("uuid") UUID uuid) {
+        this.authorsService.deleteAuthor(uuid);
     }
 }
