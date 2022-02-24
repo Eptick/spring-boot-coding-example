@@ -53,7 +53,10 @@ public class AuthorsServiceImpl implements AuthorsService {
     }
 
     public Author saveAuthor(CreateAuthorDto dto) {
-        return this.authorsRepository.save(this.mapper.map(dto, Author.class));
+        return saveAuthor(this.mapper.map(dto, Author.class));
+    }
+    public Author saveAuthor(Author author) {
+        return this.authorsRepository.save(author);
     }
 
     public Author updateAuthor(UUID uuid, UpdateAuthorDto dto) {

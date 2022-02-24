@@ -17,6 +17,7 @@ public interface AuthorsService {
     public Page<Author> getAuthors(Predicate predicate, Pageable pageable);
     public Author getAuthor(UUID uuid);
     public Author updateAuthor(UUID uuid, UpdateAuthorDto author);
+    public Author saveAuthor(Author author);
     public Author saveAuthor(CreateAuthorDto author);
     public Iterable<Author> updateOrCreateAuthors(Set<AuthorDto> author);
     public void deleteAuthor(UUID uuid);
