@@ -11,10 +11,12 @@ import org.springframework.data.domain.Pageable;
 import hr.redzicleon.library.domain.Author;
 import hr.redzicleon.library.domain.dto.AuthorDto;
 import hr.redzicleon.library.domain.dto.CreateAuthorDto;
+import hr.redzicleon.library.domain.dto.UpdateAuthorDto;
 
 public interface AuthorsService {
     public Page<Author> getAuthors(Predicate predicate, Pageable pageable);
     public Author getAuthor(UUID uuid);
+    public Author updateAuthor(UUID uuid, UpdateAuthorDto author);
     public Author saveAuthor(CreateAuthorDto author);
     public Iterable<Author> updateOrCreateAuthors(Set<AuthorDto> author);
     public void deleteAuthor(UUID uuid);

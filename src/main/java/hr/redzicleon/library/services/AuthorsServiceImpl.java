@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import hr.redzicleon.library.domain.Author;
 import hr.redzicleon.library.domain.dto.AuthorDto;
 import hr.redzicleon.library.domain.dto.CreateAuthorDto;
+import hr.redzicleon.library.domain.dto.UpdateAuthorDto;
 import hr.redzicleon.library.repository.AuthorsRepository;
 
 @Service
@@ -51,8 +52,14 @@ public class AuthorsServiceImpl implements AuthorsService {
         return author.get();
     }
 
-    public Author saveAuthor(CreateAuthorDto author) {
-        return this.authorsRepository.save(this.mapper.map(author, Author.class));
+    public Author saveAuthor(CreateAuthorDto dto) {
+        return this.authorsRepository.save(this.mapper.map(dto, Author.class));
+    }
+
+    public Author updateAuthor(UUID uuid, UpdateAuthorDto dto) {
+        Author author = this.getAuthor(uuid);
+        BeanUtils.copyProperties(dto, author);
+        return this.authorsRepository.save(author);
     }
 
     public Iterable<Author> updateOrCreateAuthors(Set<AuthorDto> dto) {
