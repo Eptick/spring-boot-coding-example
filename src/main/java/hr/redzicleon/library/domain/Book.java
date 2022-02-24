@@ -15,14 +15,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.hibernate.annotations.SQLInsert;
-
 import hr.redzicleon.library.annotations.ISBN;
 import hr.redzicleon.library.domain.audit.AuditableEntity;
 
 @Entity
 @Table(name = "books")
-@SQLInsert(sql = "insert into books (created_at, updated_at, genre, title, isbn) values (?, ?, ?, ?, isbn13(?))")
 public class Book extends AuditableEntity {
 
     @Id
