@@ -33,7 +33,7 @@ Requests/sec:  19391.40
 Transfer/sec:     23.92MB
 ```
 **Getting books**
-Running 30s test @ http://172.30.160.1:8080/v1/books
+Running 30s test @ http://localhost:8080/v1/books
   3 threads and 400 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
     Latency    21.41ms   13.87ms 388.77ms   95.13%
