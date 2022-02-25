@@ -10,6 +10,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,12 +24,15 @@ public class Book extends AuditableEntity {
     @Id
     @ISBN
     @Column(name = "ISBN", updatable = false, nullable = false)
+    @NotBlank
     private String ISBN;
 
     @Column(name = "title", updatable = true, nullable = false)
+    @NotBlank
     private String title;
 
     @Column(name = "genre", updatable = true, nullable = false)
+    @NotBlank
     private String genre;
 
     @ManyToMany()

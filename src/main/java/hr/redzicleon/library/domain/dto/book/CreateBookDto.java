@@ -2,7 +2,12 @@ package hr.redzicleon.library.domain.dto.book;
 
 import javax.validation.constraints.NotBlank;
 
-public class UpdateBookDto {
+import hr.redzicleon.library.annotations.ISBN;
+
+public class CreateBookDto {
+    @ISBN
+    @NotBlank
+    private String ISBN;
     @NotBlank
     private String title;
     @NotBlank

@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -24,10 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hr.redzicleon.library.domain.Book;
 import hr.redzicleon.library.domain.dto.book.BookDto;
-import hr.redzicleon.library.domain.dto.book.UpdateBookDto;
+import hr.redzicleon.library.domain.dto.book.CreateBookDto;
 import hr.redzicleon.library.services.BooksService;
 
-@RestController()
+@Validated
+@RestController
 @RequestMapping("books")
 public class BooksController {
 
@@ -49,17 +51,17 @@ public class BooksController {
     }
 
     @PostMapping("")
-    public Book createBook(@Valid @RequestBody BookDto dto) {
+    public Book createBook(@Valid @RequestBody CreateBookDto dto) {
         return this.booksService.saveBook(dto);
     }
 
     @PutMapping("{isbn}")
-    public Book updateBook(@PathVariable("isbn") String isbn, @Valid @RequestBody UpdateBookDto dto) {
+    public Book updateBook(@PathVariable("isbn") String isbn, @Valid @RequestBody BookDto dto) {
         return this.booksService.updateBook(isbn, dto);
     }
 
     @PatchMapping("")
-    public Iterable<Book> updateOrCreateBooks(@RequestBody @NotNull Set<BookDto> dto) {
+    public Iterable<Book> updateOrCreateBooks(@RequestBody @NotNull Set<@Valid BookDto> dto) {
         return this.booksService.updateOrCreateBooks(dto);
     }
 

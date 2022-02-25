@@ -7,6 +7,7 @@ import java.util.stream.StreamSupport;
 import javax.persistence.EntityNotFoundException;
 
 import org.hibernate.exception.ConstraintViolationException;
+import org.hibernate.id.IdentifierGenerationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -33,14 +34,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.notFound().build();
     }
 
-    @ExceptionHandler(ConstraintViolationException.class)
+    @ExceptionHandler({
+            ConstraintViolationException.class,
+            IdentifierGenerationException.class
+    })
     public ResponseEntity<Object> handleConstraintViolationException(
             Exception exception) {
         return ResponseEntity.badRequest().body(null);
     }
 
     @ExceptionHandler(javax.validation.ConstraintViolationException.class)
-    public ResponseEntity<Map<String, String>> handle(javax.validation.ConstraintViolationException constraintViolationException) {
+    public ResponseEntity<Map<String, String>> handle(
+            javax.validation.ConstraintViolationException constraintViolationException) {
         Map<String, String> errors = new HashMap<>();
         constraintViolationException.getConstraintViolations().forEach((error) -> {
             String fieldName = (StreamSupport.stream(error.getPropertyPath().spliterator(), false)
