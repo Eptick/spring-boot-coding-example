@@ -36,7 +36,7 @@ public class JWTConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/authors").permitAll()
                 .antMatchers(HttpMethod.GET, "/books").permitAll()
                 .antMatchers("/authors**").hasRole("admin")
-                .antMatchers("/books**").hasRole("publisher")
+                .antMatchers("/books**").hasRole("author")
                 .anyRequest().authenticated())
             .oauth2ResourceServer(oauth2 -> oauth2.jwt());
 	}
