@@ -5,8 +5,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
@@ -25,7 +23,6 @@ public class Book extends AuditableEntity {
     @Id
     @ISBN
     @Column(name = "ISBN", updatable = false, nullable = false)
-    @GeneratedValue(strategy=GenerationType.AUTO)
     private String ISBN;
 
     @Column(name = "title", updatable = true, nullable = false)
