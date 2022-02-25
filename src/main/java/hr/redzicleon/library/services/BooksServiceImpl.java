@@ -1,7 +1,5 @@
 package hr.redzicleon.library.services;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -11,8 +9,6 @@ import java.util.stream.StreamSupport;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import javax.validation.Validation;
-import javax.validation.Validator;
 
 import com.querydsl.core.types.Predicate;
 
@@ -34,13 +30,10 @@ public class BooksServiceImpl implements BooksService {
 
     private final BooksRepository booksRepository;
     private final ModelMapper mapper;
-    private final Validator validator;
 
     public BooksServiceImpl(
-            Validator validator,
             ModelMapper mapper,
             BooksRepository booksRepository) {
-        this.validator = validator;
         this.booksRepository = booksRepository;
         this.mapper = mapper;
     }
