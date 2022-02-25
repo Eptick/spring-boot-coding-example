@@ -10,8 +10,10 @@ import java.util.stream.StreamSupport;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.querydsl.core.types.Predicate;
 
+import org.hibernate.id.IdentifierGenerationException;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -51,6 +53,10 @@ public class BooksServiceImpl implements BooksService {
     }
 
     public Book saveBook(CreateBookDto dto) {
+        Optional<Book> book = this.booksRepository.findById(dto.getISBN());
+        if(book.isPresent()) {
+            throw new IdentifierGenerationException("Book already exists");
+        }
         return saveBook(mapper.map(dto, Book.class));
     }
 

@@ -29,4 +29,12 @@ public class CreateBookDto {
         this.genre = genre;
     }
 
+    public String getISBN() {
+        return this.ISBN;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
 }
