@@ -250,7 +250,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"isbn\": \"85-359-0277-5\",\r\n    \"title\": \"aaaaa\",\r\n    \"genre\": \"trošak\"\r\n}",
+							"raw": "{\r\n    \"isbn\": \"1-84356-028-3\",\r\n    \"title\": \"aaaaa\",\r\n    \"genre\": \"trošak\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -304,14 +304,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base}}/v1/books/99921-58-10-7",
+							"raw": "{{base}}/v1/books/1-84356-028-3",
 							"host": [
 								"{{base}}"
 							],
 							"path": [
 								"v1",
 								"books",
-								"99921-58-10-7"
+								"1-84356-028-3"
 							]
 						}
 					},
@@ -352,7 +352,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"isbn\": \"0-943396-04-2sssždasda\",\r\n        \"title\": \"Umoran Leon\",\r\n        \"genre\": \"Krimić\"\r\n    },\r\n    {\r\n        \"isbn\": \"99921-58-10-7\",\r\n        \"title\": \"Book patched\"\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"isbn\": \"0-943396-04-2\",\r\n        \"title\": \"Umoran Leon\",\r\n        \"genre\": \"Krimić\"\r\n    },\r\n    {\r\n        \"isbn\": \"99921-58-10-7\",\r\n        \"title\": \"Book patched\"\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
