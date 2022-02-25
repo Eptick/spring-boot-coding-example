@@ -14,4 +14,5 @@ import hr.redzicleon.library.domain.Book;
 public interface AuthorsBooksService {
     public Page<Book> findAllBooksByAuthor(UUID uuid, Pageable pageable, Predicate predicate);
     public Author assignBookToAuthor(UUID uuid, @ISBN String isbn);
+    public Author deleteBookFromAuthor(UUID uuid, @ISBN String isbn);
 }

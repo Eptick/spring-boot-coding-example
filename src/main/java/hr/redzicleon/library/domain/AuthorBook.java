@@ -5,12 +5,9 @@ import java.util.UUID;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
-import org.springframework.data.domain.Persistable;
-
 @Entity
 @Table(name = "authors_books")
-public class AuthorBook implements Persistable<AuthorBookId> {
+public class AuthorBook {
     @EmbeddedId
     private AuthorBookId bookId;
 
@@ -31,9 +28,5 @@ public class AuthorBook implements Persistable<AuthorBookId> {
 
     public AuthorBookId getId() {
         return this.bookId;
-    }
-  
-    public boolean isNew() {
-        return true; // saveup one select query
     }
 }

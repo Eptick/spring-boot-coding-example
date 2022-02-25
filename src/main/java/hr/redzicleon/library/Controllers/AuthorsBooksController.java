@@ -7,6 +7,7 @@ import com.querydsl.core.types.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +35,11 @@ public class AuthorsBooksController {
     @PostMapping("{isbn}")
     public Author assignBookToAuthor(@PathVariable("uuid") UUID uuid, @PathVariable("isbn") String ISBN) {
         return this.authorsBooksService.assignBookToAuthor(uuid, ISBN);
+    }
+
+    @DeleteMapping("{isbn}")
+    public Author removeBookFromAuthor(@PathVariable("uuid") UUID uuid, @PathVariable("isbn") String ISBN) {
+        return this.authorsBooksService.deleteBookFromAuthor(uuid, ISBN);
     }
     
 }

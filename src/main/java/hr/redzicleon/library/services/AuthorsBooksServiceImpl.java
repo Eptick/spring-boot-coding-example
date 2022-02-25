@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import hr.redzicleon.library.domain.Author;
 import hr.redzicleon.library.domain.AuthorBook;
+import hr.redzicleon.library.domain.AuthorBookId;
 import hr.redzicleon.library.domain.Book;
 import hr.redzicleon.library.domain.QBook;
 import hr.redzicleon.library.repository.AuthorsBooksRepository;
@@ -31,6 +32,11 @@ public class AuthorsBooksServiceImpl implements AuthorsBooksService {
 
     public Author assignBookToAuthor(UUID uuid, @ISBN String isbn) {
         authorsBooksRepository.save(new AuthorBook(uuid, isbn));
+        return this.authorsService.getAuthor(uuid);
+    }
+
+    public Author deleteBookFromAuthor(UUID uuid, @ISBN String isbn) {
+        authorsBooksRepository.deleteById(new AuthorBookId(uuid, isbn));
         return this.authorsService.getAuthor(uuid);
     }
 
