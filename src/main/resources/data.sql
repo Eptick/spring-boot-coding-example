@@ -26,6 +26,10 @@ insert into authors_books values (
     '960-425-059-0'
 );
 insert into authors_books values (
+    getAuthorId('3. Homer'),
+    '960-425-059-0'
+);
+insert into authors_books values (
     getAuthorId('2. Voltaire'),
     '80-902734-1-6'
 );
