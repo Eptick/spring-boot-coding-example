@@ -33,8 +33,10 @@ public class JWTConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests(authz -> authz
-                .antMatchers(HttpMethod.GET, "/admin").hasRole("admin")
-                .antMatchers(HttpMethod.GET, "/publisher").hasRole("publisher")
+                .antMatchers(HttpMethod.GET, "/authors").permitAll()
+                .antMatchers(HttpMethod.GET, "/books").permitAll()
+                .antMatchers("/authors**").hasRole("admin")
+                .antMatchers("/books**").hasRole("publisher")
                 .anyRequest().authenticated())
             .oauth2ResourceServer(oauth2 -> oauth2.jwt());
 	}
