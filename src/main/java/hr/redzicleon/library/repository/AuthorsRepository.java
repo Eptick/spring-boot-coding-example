@@ -19,7 +19,6 @@ import hr.redzicleon.library.domain.QAuthor;
 public interface AuthorsRepository extends PagingAndSortingRepository<Author, UUID>, QuerydslPredicateExecutor<Author>, QuerydslBinderCustomizer<QAuthor> {
     Optional<Author> findById(UUID id);
     default void customize(QuerydslBindings bindings, QAuthor author) {
-        bindings.bind(author.books.any().title).first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);
         bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);
     }
 }
