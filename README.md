@@ -43,6 +43,9 @@ Requests/sec:  19300.51
 Transfer/sec:     21.81MB
 
 ## Decision
+### schema.sql & data.sql
+I could use the JPA solution for auto ddl generation but I chose the sql
+variant to show my SQL understanding skill.
 ### fixedRate for @Scheduled instead of anything else
 We want the notification to run on app startup, if something fails, when we
 start the app we want it to notify about latest books
