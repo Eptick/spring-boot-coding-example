@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import hr.redzicleon.library.annotations.ApiVersion;
 import hr.redzicleon.library.domain.Author;
 import hr.redzicleon.library.domain.dto.author.CreateAuthorDto;
 import hr.redzicleon.library.domain.dto.author.UpdateAuthorDto;
@@ -32,6 +33,7 @@ import hr.redzicleon.library.services.AuthorsService;
 @RestController()
 @Validated
 @RequestMapping("authors")
+@ApiVersion(1)
 public class AuthorsController {
     private final AuthorsService authorsService;
 

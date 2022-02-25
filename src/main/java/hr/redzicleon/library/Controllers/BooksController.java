@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import hr.redzicleon.library.annotations.ApiVersion;
 import hr.redzicleon.library.domain.Book;
 import hr.redzicleon.library.domain.dto.book.BookDto;
 import hr.redzicleon.library.domain.dto.book.CreateBookDto;
@@ -31,6 +32,7 @@ import hr.redzicleon.library.services.BooksService;
 @Validated
 @RestController
 @RequestMapping("books")
+@ApiVersion(1)
 public class BooksController {
 
     BooksService booksService;

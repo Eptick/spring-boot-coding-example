@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import hr.redzicleon.library.annotations.ApiVersion;
 import hr.redzicleon.library.domain.Author;
 import hr.redzicleon.library.domain.Book;
 import hr.redzicleon.library.services.AuthorsBooksService;
 
 @RestController
 @RequestMapping("authors/{uuid}/books")
+@ApiVersion(1)
 public class AuthorsBooksController {
     AuthorsBooksService authorsBooksService;
 
