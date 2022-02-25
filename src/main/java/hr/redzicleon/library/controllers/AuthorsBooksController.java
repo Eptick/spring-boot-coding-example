@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.querydsl.core.types.Predicate;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
@@ -30,6 +31,7 @@ public class AuthorsBooksController {
     }
 
     @GetMapping("")
+    @Cacheable("cache")
     public Page<Book> getBooksByAuthor(@QuerydslPredicate(root = Book.class) Predicate predicate, @PathVariable("uuid") UUID uuid, Pageable pageable) {
         return this.authorsBooksService.findAllBooksByAuthor(uuid, pageable, predicate);
     }

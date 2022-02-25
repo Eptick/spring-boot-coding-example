@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import com.querydsl.core.types.Predicate;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
@@ -42,12 +43,14 @@ public class BooksController {
     }
 
     @GetMapping("")
+    @Cacheable("books")
     public Page<Book> index(@PageableDefault(sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
             @QuerydslPredicate Predicate predicate) {
         return this.booksService.getBooks(predicate, pageable);
     }
 
     @GetMapping("{isbn}")
+    @Cacheable("books")
     public Book getBook(@PathVariable("isbn") String isbn) {
         return this.booksService.getBook(isbn);
     }

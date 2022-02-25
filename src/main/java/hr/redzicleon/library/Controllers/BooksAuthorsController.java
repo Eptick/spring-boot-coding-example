@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.querydsl.core.types.Predicate;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
@@ -22,6 +23,7 @@ import hr.redzicleon.library.services.BooksAuthorsService;
 @RestController
 @RequestMapping("books/{isbn}/authors")
 @ApiVersion(1)
+@Cacheable("cache")
 public class BooksAuthorsController {
     BooksAuthorsService booksAuthorsService;
 
@@ -30,6 +32,7 @@ public class BooksAuthorsController {
     }
 
     @GetMapping("")
+    @Cacheable("cache")
     public Page<Author> getAuthorsByBook(@QuerydslPredicate(root = Author.class) Predicate predicate,
             @PathVariable("isbn") String isdn, Pageable pageable) {
         return this.booksAuthorsService.findAllAuthorsForBook(isdn, pageable, predicate);

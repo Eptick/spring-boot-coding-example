@@ -19,6 +19,28 @@ Adjust the datasource and authorization server properties using enviroment varia
 Use `mvnw springBoot:install` to build a `war` located in
 `target\library-{version}.war` and use it to be deployed to your production
 server, be that Tomcat or other methods
+## Preformance
+The tool for stres testing was [wrk](https://github.com/wg/wrk)  
+**Getting authors**
+```
+Running 30s test @ http://localhost:8080/v1/authors
+  3 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    22.30ms   22.70ms 590.60ms   97.47%
+    Req/Sec     6.57k   689.98    10.85k    86.97%
+  582801 requests in 30.05s, 718.76MB read
+Requests/sec:  19391.40
+Transfer/sec:     23.92MB
+```
+**Getting books**
+Running 30s test @ http://172.30.160.1:8080/v1/books
+  3 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    21.41ms   13.87ms 388.77ms   95.13%
+    Req/Sec     6.47k   584.75     9.78k    85.78%
+  579676 requests in 30.03s, 655.20MB read
+Requests/sec:  19300.51
+Transfer/sec:     21.81MB
 
 ## Decision
 ### fixedRate for @Scheduled instead of anything else

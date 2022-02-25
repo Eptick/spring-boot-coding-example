@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 
 import com.querydsl.core.types.Predicate;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
@@ -42,6 +43,7 @@ public class AuthorsController {
     }
 
     @GetMapping("")
+    @Cacheable("cache")
     public Page<Author> index(
             @PageableDefault(sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
             @QuerydslPredicate Predicate predicate) {
@@ -49,6 +51,7 @@ public class AuthorsController {
     }
 
     @GetMapping("{uuid}")
+    @Cacheable("cache")
     public Author getAuthor(@PathVariable("uuid") UUID uuid) {
         return this.authorsService.getAuthor(uuid);
     }
@@ -59,6 +62,7 @@ public class AuthorsController {
     }
 
     @PutMapping("{uuid}")
+    @Cacheable("cache")
     public Author updateAuthor(@PathVariable("uuid") UUID uuid, @Valid @RequestBody UpdateAuthorDto dto) {
         return this.authorsService.updateAuthor(uuid, dto);
     }
