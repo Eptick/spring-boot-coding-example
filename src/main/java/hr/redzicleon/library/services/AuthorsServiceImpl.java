@@ -21,9 +21,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import hr.redzicleon.library.domain.Author;
-import hr.redzicleon.library.domain.dto.AuthorDto;
-import hr.redzicleon.library.domain.dto.CreateAuthorDto;
-import hr.redzicleon.library.domain.dto.UpdateAuthorDto;
+import hr.redzicleon.library.domain.dto.author.AuthorDto;
+import hr.redzicleon.library.domain.dto.author.CreateAuthorDto;
+import hr.redzicleon.library.domain.dto.author.UpdateAuthorDto;
 import hr.redzicleon.library.repository.AuthorsRepository;
 
 @Service

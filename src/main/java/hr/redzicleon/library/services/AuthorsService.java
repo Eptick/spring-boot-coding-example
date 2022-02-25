@@ -9,9 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import hr.redzicleon.library.domain.Author;
-import hr.redzicleon.library.domain.dto.AuthorDto;
-import hr.redzicleon.library.domain.dto.CreateAuthorDto;
-import hr.redzicleon.library.domain.dto.UpdateAuthorDto;
+import hr.redzicleon.library.domain.dto.author.AuthorDto;
+import hr.redzicleon.library.domain.dto.author.CreateAuthorDto;
+import hr.redzicleon.library.domain.dto.author.UpdateAuthorDto;
 
 public interface AuthorsService {
     public Page<Author> getAuthors(Predicate predicate, Pageable pageable);

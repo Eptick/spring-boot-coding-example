@@ -1,8 +1,8 @@
-package hr.redzicleon.library.domain.dto;
+package hr.redzicleon.library.domain.dto.author;
 
 import javax.validation.constraints.NotBlank;
 
-public class UpdateAuthorDto {
+public class CreateAuthorDto {
     @NotBlank
     public String name;
 

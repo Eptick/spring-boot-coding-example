@@ -1,4 +1,4 @@
-package hr.redzicleon.library.domain.dto;
+package hr.redzicleon.library.domain.dto.author;
 
 import java.util.UUID;
 
