@@ -17,5 +17,5 @@ public @interface ISBN {
  
     Class<?>[] groups() default{};
     Class<? extends Payload>[] payload() default{};
-    String message() default "isbn_invalid";
+    String message() default "ISBN is not valid";
 }
