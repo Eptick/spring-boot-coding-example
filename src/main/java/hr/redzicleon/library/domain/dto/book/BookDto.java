@@ -8,4 +8,13 @@ public class BookDto extends UpdateBookDto {
     @ISBN
     @NotBlank
     private String ISBN;
+
+    public String getISBN() {
+        return this.ISBN;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
 }
