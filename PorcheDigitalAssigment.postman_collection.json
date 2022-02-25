@@ -1,0 +1,533 @@
+{
+	"info": {
+		"_postman_id": "11ffd0d9-53ad-42b0-97c7-7faa78e6c907",
+		"name": "PorcheDigitalAssigment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "authors",
+			"item": [
+				{
+					"name": "/authors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/v1/authors",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/authors",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Leon\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/v1/authors",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/authors/:uuid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/v1/authors/35ecf6e8-9216-4e67-a3ea-66ecd2d19a66",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"authors",
+								"35ecf6e8-9216-4e67-a3ea-66ecd2d19a66"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/authors/:uuid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/v1/authors/0096d201-d4f2-43ed-9973-dbf77e9b06d9",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"authors",
+								"0096d201-d4f2-43ed-9973-dbf77e9b06d9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/authors/:uuid",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Nije sretna\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/v1/authors/a26c3451-8809-4fe4-a5d4-c2270bfa0b90",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"authors",
+								"a26c3451-8809-4fe4-a5d4-c2270bfa0b90"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/authors",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": \"f991ff57-e897-48d2-a299-e524b9ef3047\",\r\n        \"name\": \"Umoran Leon\"\r\n    },\r\n    {\r\n        \"name\": \"joj\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/v1/authors",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/authors/:uuid/books",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/v1/authors/0096d201-d4f2-43ed-9973-dbf77e9b06d9/books",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"authors",
+								"0096d201-d4f2-43ed-9973-dbf77e9b06d9",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/authors/:uuid/books/:isbn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/v1/authors/0096d201-d4f2-43ed-9973-dbf77e9b06d9/books/9971-5-0210-0",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"authors",
+								"0096d201-d4f2-43ed-9973-dbf77e9b06d9",
+								"books",
+								"9971-5-0210-0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/authors/:uuid/books/:isbn",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/v1/authors/0096d201-d4f2-43ed-9973-dbf77e9b06d9/books/9971-5-0210-0",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"authors",
+								"0096d201-d4f2-43ed-9973-dbf77e9b06d9",
+								"books",
+								"9971-5-0210-0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "books",
+			"item": [
+				{
+					"name": "/books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/v1/books",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isbn\": \"85-359-0277-5\",\r\n    \"title\": \"aaaaa\",\r\n    \"genre\": \"trošak\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/v1/books",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books/:isbn",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/v1/books/99921-58-10-7",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"books",
+								"99921-58-10-7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books/:isbn",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/v1/books/99921-58-10-7",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"books",
+								"99921-58-10-7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books/:isbn",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Nije sretna\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/v1/books/99921-58-10-7",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"books",
+								"99921-58-10-7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"isbn\": \"0-943396-04-2sssždasda\",\r\n        \"title\": \"Umoran Leon\",\r\n        \"genre\": \"Krimić\"\r\n    },\r\n    {\r\n        \"isbn\": \"99921-58-10-7\",\r\n        \"title\": \"Book patched\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/v1/books",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books/:isbn/authors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/v1/books/9971-5-0210-0/authors",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"books",
+								"9971-5-0210-0",
+								"authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books/:uuid/authors/:isbn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/v1/books/9971-5-0210-0/authors/0096d201-d4f2-43ed-9973-dbf77e9b06d9",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"books",
+								"9971-5-0210-0",
+								"authors",
+								"0096d201-d4f2-43ed-9973-dbf77e9b06d9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/books/:uuid/authors/:isbn",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/v1/books/9971-5-0210-0/authors/0096d201-d4f2-43ed-9973-dbf77e9b06d9",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"v1",
+								"books",
+								"9971-5-0210-0",
+								"authors",
+								"0096d201-d4f2-43ed-9973-dbf77e9b06d9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "getToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"access_token\", jsonData.access_token);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/token?scope=admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"token"
+					],
+					"query": [
+						{
+							"key": "scope",
+							"value": "admin"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base}}/context-path/v3/api-docs",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"context-path",
+						"v3",
+						"api-docs"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base",
+			"value": "http://localhost:8080"
+		}
+	]
+}

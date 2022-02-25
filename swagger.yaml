@@ -1,0 +1,819 @@
+swagger: '2.0'
+info:
+  description: Library Documentation
+  version: '1.0'
+  title: Documentation for the Library API
+host: localhost:8080
+basePath: /v1
+tags:
+  - name: Authors
+  - name: Authors relationship with books
+    description: Managing books on authors
+  - name: Books
+  - name: Books relationship with authors
+    description: Managing books on authors
+paths:
+  /authors:
+    get:
+      tags:
+        - Authors
+      summary: Fetch all indexes
+      operationId: indexUsingGET
+      produces:
+        - 'application/json'
+      parameters:
+        - name: page
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Current page
+        - name: size
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Current page size
+        - name: sort
+          in: query
+          required: false
+          type: string
+          description: propertyName separated by comma. example ?sort=bookCount,asc
+        - name: name
+          in: query
+          type: string
+          description: Filter by name
+        - name: books.title
+          in: query
+          type: string
+          description: Filter by book name
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PageAuthor'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - Authors
+      summary: Create an author object
+      operationId: createAuthorUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - 'application/json'
+      parameters:
+        - in: body
+          name: body
+          description: dto
+          required: true
+          schema:
+            $ref: '#/definitions/CreateAuthorDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Author'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    patch:
+      tags:
+        - Authors
+      summary: Send a list of authors to update or create
+      operationId: updateOrCreateAuthorsUsingPATCH
+      consumes:
+        - application/json
+      produces:
+        - 'application/json'
+      parameters:
+        - in: body
+          name: body
+          description: Array of Authors, id is not required
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/AuthorDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Authors'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /authors/{uuid}:
+    get:
+      tags:
+        - Authors
+      summary: Retrive single author by uuid
+      operationId: getAuthorUsingGET
+      produces:
+        - 'application/json'
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid of the author
+          required: true
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Author'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - Authors
+      summary: Update single author by uuid
+      operationId: updateAuthorUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - 'application/json'
+      parameters:
+        - in: body
+          name: body
+          description: Authors properties to update
+          required: true
+          schema:
+            $ref: '#/definitions/UpdateAuthorDto'
+        - name: uuid
+          in: path
+          description: uuid of the author to udate
+          required: true
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Author'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - Authors
+      summary: Delete single author by uuid
+      operationId: deleteAuthorUsingDELETE
+      produces:
+        - 'application/json'
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid of the author to delete
+          required: true
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /authors/{uuid}/books:
+    get:
+      tags:
+        - Authors relationship with books
+      summary: Get book belonging to author with uuid
+      operationId: getBooksByAuthorUsingGET
+      produces:
+        - 'application/json'
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          type: string
+          description: Author to modify
+        - name: page
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Current page
+        - name: size
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Current page size
+        - name: sort
+          in: query
+          required: false
+          type: string
+          description: propertyName separated by comma. example ?sort=title,asc
+        - name: title
+          in: query
+          type: string
+          description: Filter by book name
+        - name: authors.name
+          in: query
+          type: string
+          description: Filter by author name
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Books'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /authors/{uuid}/books/{isbn}:
+    post:
+      tags:
+        - Authors relationship with books
+      summary: Assign a single book to a user
+      operationId: assignBookToAuthorUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - 'application/json'
+      parameters:
+        - name: isbn
+          in: path
+          description: isbn
+          required: true
+          type: string
+        - name: uuid
+          in: path
+          description: uuid
+          required: true
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Author'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - Authors relationship with books
+      summary: removeBookFromAuthor
+      operationId: removeBookFromAuthorUsingDELETE
+      produces:
+        - 'application/json'
+      parameters:
+        - name: isbn
+          in: path
+          description: isbn
+          required: true
+          type: string
+        - name: uuid
+          in: path
+          description: uuid
+          required: true
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Author'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /books:
+    get:
+      tags:
+        - Books
+      summary: Get all books as a page
+      operationId: indexUsingGET_1
+      produces:
+        - 'application/json'
+      parameters:
+        - name: page
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Current page
+        - name: size
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Current page size
+        - name: sort
+          in: query
+          required: false
+          type: string
+          description: propertyName separated by comma. example ?sort=title,asc
+        - name: title
+          in: query
+          type: string
+          description: Filter by title
+        - name: isbn
+          in: query
+          type: string
+          description: Filter by isbn
+        - name: genre
+          in: query
+          type: string
+          description: Filter by genre
+        - name: authors.name
+          in: query
+          type: string
+          description: Filter by authors name
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PageBook'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - Books
+      summary: Creates a book resource
+      operationId: createBookUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - 'application/json'
+      parameters:
+        - in: body
+          name: body
+          description: Body of the book
+          required: true
+          schema:
+            $ref: '#/definitions/CreateBookDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Book'
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    patch:
+      tags:
+        - Books
+      summary: Send a list of books to update or create
+      operationId: updateOrCreateBooksUsingPATCH
+      consumes:
+        - application/json
+      produces:
+        - 'application/json'
+      parameters:
+        - in: body
+          name: body
+          description: body
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/BookDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Books'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ValidationError'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /books/{isbn}:
+    get:
+      tags:
+        - Books
+      summary: Get a single book by isbn
+      operationId: getBookUsingGET
+      produces:
+        - 'application/json'
+      parameters:
+        - name: isbn
+          in: path
+          description: isbn
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Book'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - Books
+      summary: Update a single book by isbn
+      operationId: updateBookUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - 'application/json'
+      parameters:
+        - in: body
+          name: dto
+          description: dto
+          required: true
+          schema:
+            $ref: '#/definitions/BookDto'
+        - name: isbn
+          in: path
+          description: isbn
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Book'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - Books
+      summary: Delete a single book by isbn
+      operationId: deleteBookUsingDELETE
+      produces:
+        - 'application/json'
+      parameters:
+        - name: isbn
+          in: path
+          description: isbn
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /books/{isbn}/authors:
+    get:
+      tags:
+        - Books relationship with authors
+      summary: getAuthorsByBook
+      operationId: getAuthorsByBookUsingGET
+      produces:
+        - 'application/json'
+      parameters:
+        - name: isbn
+          in: path
+          description: isbn
+          required: true
+          type: string
+        - name: page
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Current page
+        - name: size
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: Current page size
+        - name: sort
+          in: query
+          required: false
+          type: string
+          description: propertyName separated by comma. example ?sort=title,asc
+        - name: name
+          in: query
+          type: string
+          description: Filter by author name
+        - name: books.title
+          in: query
+          type: string
+          description: Filter by book name
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PageAuthor'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /books/{isbn}/authors/{uuid}:
+    post:
+      tags:
+        - Books relationship with authors
+      summary: assignAuthorToBook
+      operationId: assignAuthorToBookUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - 'application/json'
+      parameters:
+        - name: isbn
+          in: path
+          description: isbn of the book in the relationship
+          required: true
+          type: string
+        - name: uuid
+          in: path
+          description:  uuid of the book in the relationship
+          required: true
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Book'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - Books relationship with authors
+      summary: deleteAuthorFromBook
+      operationId: deleteAuthorFromBookUsingDELETE
+      produces:
+        - 'application/json'
+      parameters:
+        - name: isbn
+          in: path
+          description: isbn of the book in the relationship
+          required: true
+          type: string
+        - name: uuid
+          in: path
+          description: uuid of the book in the relationship
+          required: true
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Book'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+definitions:
+  ValidationError:
+    type: object
+    properties:
+      title:
+        type: string
+        format: string
+        example: "can not be blank"
+    title: Validation Error
+  Author:
+    type: object
+    properties:
+      bookCount:
+        type: integer
+        format: int32
+      createdAt:
+        type: string
+        format: date-time
+      id:
+        type: string
+        format: uuid
+      name:
+        type: string
+        example: 'Leon Redžić'
+      updatedAt:
+        type: string
+        format: date-time
+    title: Author
+  AuthorDto:
+    type: object
+    required:
+      - name
+    properties:
+      id:
+        type: string
+        format: uuid
+      name:
+        type: string
+        example: "Leon Redžić"
+    title: AuthorDto
+  Book:
+    type: object
+    required:
+      - genre
+      - title
+    properties:
+      createdAt:
+        type: string
+        format: date-time
+      genre:
+        type: string
+      isbn:
+        type: string
+      title:
+        type: string
+      updatedAt:
+        type: string
+        format: date-time
+    title: Book
+  BookDto:
+    type: object
+    properties:
+      genre:
+        type: string
+      isbn:
+        type: string
+      title:
+        type: string
+    title: BookDto
+  CreateAuthorDto:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+    title: CreateAuthorDto
+  CreateBookDto:
+    type: object
+    required:
+      - isbn
+      - genre
+      - title
+    properties:
+      isbn:
+        type: string
+        example: 99921-58-10-7
+      genre:
+        type: string
+        example: "Drama"
+      title:
+        type: string
+        example: "Silence of the lambs"
+    title: CreateBookDto
+  Authors:
+    type: array
+    items:
+      $ref: '#/definitions/Author'
+    title: Authors
+  Books:
+    type: array
+    items:
+      $ref: '#/definitions/Book'
+    title: Books
+  PageBook:
+    type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: '#/definitions/Book'
+      empty:
+        type: boolean
+      first:
+        type: boolean
+      last:
+        type: boolean
+      number:
+        type: integer
+        format: int32
+      numberOfElements:
+        type: integer
+        format: int32
+      size:
+        type: integer
+        format: int32
+        example: 10
+      totalElements:
+        type: integer
+        format: int64
+        example: 1
+      totalPages:
+        type: integer
+        format: int32
+        example: 1
+  PageAuthor:
+    type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: '#/definitions/Author'
+      empty:
+        type: boolean
+      first:
+        type: boolean
+      last:
+        type: boolean
+      number:
+        type: integer
+        format: int32
+      numberOfElements:
+        type: integer
+        format: int32
+      size:
+        type: integer
+        format: int32
+        example: 10
+      totalElements:
+        type: integer
+        format: int64
+        example: 1
+      totalPages:
+        type: integer
+        format: int32
+        example: 1
+  UpdateAuthorDto:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        example: Leon Redžić
+    title: UpdateAuthorDto
