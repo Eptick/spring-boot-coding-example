@@ -14,6 +14,8 @@
 curl http://localhost:8888/token?scope=admin
 curl http://localhost:8888/token?scope=author
 ```
+## Testing
+There is a swagger located in this repository as an postman collection used for testing
 ## Deploying to production
 Adjust the datasource and authorization server properties using enviroment variables   
 Use `mvnw springBoot:install` to build a `war` located in
