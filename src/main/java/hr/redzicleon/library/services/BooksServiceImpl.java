@@ -10,7 +10,6 @@ import java.util.stream.StreamSupport;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.querydsl.core.types.Predicate;
 
 import org.hibernate.id.IdentifierGenerationException;
