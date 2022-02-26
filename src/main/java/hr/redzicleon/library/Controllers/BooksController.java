@@ -30,6 +30,11 @@ import hr.redzicleon.library.domain.dto.book.BookDto;
 import hr.redzicleon.library.domain.dto.book.CreateBookDto;
 import hr.redzicleon.library.services.BooksService;
 
+/**
+ * /v1/books/**
+ * 
+ * Operations on modifiying the books
+ */
 @Validated
 @RestController
 @RequestMapping("books")
@@ -61,6 +66,7 @@ public class BooksController {
     }
 
     @PutMapping("{isbn}")
+    @Cacheable("books")
     public Book updateBook(@PathVariable("isbn") String isbn, @Valid @RequestBody BookDto dto) {
         return this.booksService.updateBook(isbn, dto);
     }

@@ -9,6 +9,10 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 import hr.redzicleon.library.annotations.ApiVersion;
 
+/**
+ * Request Mapper that handles the @ApiVersion annotation and produces versioned
+ * routes
+ */
 public class ApiVersionRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
 
     private final String prefix;
@@ -17,6 +21,11 @@ public class ApiVersionRequestMappingHandlerMapping extends RequestMappingHandle
         this.prefix = prefix;
     }
 
+    /**
+     * Gets the current mappping for the route
+     * Then checks for the @ApiVersion annotation and if it has the anotation
+     * then it produces the correct route
+     */
     @Override
     protected RequestMappingInfo getMappingForMethod(Method method, Class<?> handlerType) {
         RequestMappingInfo info = super.getMappingForMethod(method, handlerType);
@@ -41,6 +50,12 @@ public class ApiVersionRequestMappingHandlerMapping extends RequestMappingHandle
         return info;
     }
 
+    /**
+     * Produces the version info @RequestMappingInfo
+     * @param annotation @ApiVersion annotation
+     * @param customCondition customconditions from getCustomTypeCondition
+     * @return
+     */
     private RequestMappingInfo createApiVersionInfo(ApiVersion annotation, RequestCondition<?> customCondition) {
         int[] values = annotation.value();
         String[] patterns = new String[values.length];

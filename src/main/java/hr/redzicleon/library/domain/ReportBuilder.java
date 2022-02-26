@@ -3,6 +3,10 @@ package hr.redzicleon.library.domain;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * Builder used to buld a report to the user, requires a ReportType to be
+ * constructed and produces a Report
+ */
 public class ReportBuilder {
     private ReportType type;
     // LinkedHashSet retains order of addition

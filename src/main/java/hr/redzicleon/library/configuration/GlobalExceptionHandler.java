@@ -20,10 +20,19 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * Handles some exceptions and produces a correct response entity
+ */
 @RestControllerAdvice
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    /**
+     * Returns 404 if a entity can't be found in the result set
+     * @param exception Generic exception
+     * @param request request that produced the exceptions
+     * @return Response entity
+     */
     @ExceptionHandler({
             EntityNotFoundException.class,
             EmptyResultDataAccessException.class,
@@ -34,6 +43,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.notFound().build();
     }
 
+    /**
+     * If there are database constraint violations a bad request should be
+     * @param exception
+     * @return
+     */
     @ExceptionHandler({
             ConstraintViolationException.class,
             IdentifierGenerationException.class
@@ -43,6 +57,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.badRequest().body(null);
     }
 
+    /**
+     * When a validaiton exception happens, format the response object to be
+     * consistend and contain valuable information
+     * @param constraintViolationException 
+     * @return Object with key value pairs
+     */
     @ExceptionHandler(javax.validation.ConstraintViolationException.class)
     public ResponseEntity<Map<String, String>> handle(
             javax.validation.ConstraintViolationException constraintViolationException) {
@@ -56,6 +76,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * When a validaiton exception happens, format the response object to be
+     * consistend and contain valuable information
+     * @param constraintViolationException 
+     * @return Object with key value pairs
+     */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex,

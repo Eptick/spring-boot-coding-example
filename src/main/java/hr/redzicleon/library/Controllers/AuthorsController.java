@@ -32,6 +32,11 @@ import hr.redzicleon.library.domain.dto.author.CreateAuthorDto;
 import hr.redzicleon.library.domain.dto.author.UpdateAuthorDto;
 import hr.redzicleon.library.services.AuthorsService;
 
+/**
+ * /v1/authors/**
+ * 
+ * Operations on modifiying the authors
+ */
 @RestController()
 @Validated
 @RequestMapping("authors")

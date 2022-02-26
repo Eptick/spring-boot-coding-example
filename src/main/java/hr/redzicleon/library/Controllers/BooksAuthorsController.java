@@ -20,10 +20,12 @@ import hr.redzicleon.library.domain.Author;
 import hr.redzicleon.library.domain.Book;
 import hr.redzicleon.library.services.BooksAuthorsService;
 
+/**
+ * Operations on modifying the relationship between books an authors
+ */
 @RestController
 @RequestMapping("books/{isbn}/authors")
 @ApiVersion(1)
-@Cacheable("cache")
 public class BooksAuthorsController {
     BooksAuthorsService booksAuthorsService;
 

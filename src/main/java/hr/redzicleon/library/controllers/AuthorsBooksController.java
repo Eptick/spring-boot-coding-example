@@ -20,6 +20,11 @@ import hr.redzicleon.library.domain.Author;
 import hr.redzicleon.library.domain.Book;
 import hr.redzicleon.library.services.AuthorsBooksService;
 
+/**
+ * Handles the relationship between the authors and books
+ * Suports fetching the books assigned to an authors, assigning books to authors
+ * , also supports removing book associations from authors
+ */
 @RestController
 @RequestMapping("authors/{uuid}/books")
 @ApiVersion(1)

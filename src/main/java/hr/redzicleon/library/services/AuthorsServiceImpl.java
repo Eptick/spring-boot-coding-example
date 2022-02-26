@@ -65,6 +65,11 @@ public class AuthorsServiceImpl implements AuthorsService {
         return this.authorsRepository.save(author);
     }
 
+    /**
+     * Splits the set into 2 groups, new creations and updates
+     * then updates the existing items, after which it creates the new items
+     * Then returns it as one set
+     */
     public Iterable<Author> updateOrCreateAuthors(Set<AuthorDto> dto) {
 
         Map<Boolean, List<AuthorDto>> groups = (StreamSupport.stream(dto.spliterator(), false)

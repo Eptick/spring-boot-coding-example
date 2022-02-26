@@ -69,6 +69,11 @@ public class BooksServiceImpl implements BooksService {
         return this.booksRepository.save(book);
     }
 
+    /**
+     * Splits the set into 2 groups, new creations and updates
+     * then updates the existing items, after which it creates the new items
+     * Then returns it as one set
+     */
     public Iterable<Book> updateOrCreateBooks(Set<BookDto> dto) {
 
         Set<String> keys = dto.stream().map(x -> x.getISBN()).collect(Collectors.toSet());
