@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hr.redzicleon.library.annotations.ApiVersion;
 import hr.redzicleon.library.domain.Author;
+import hr.redzicleon.library.domain.dto.author.AuthorDto;
 import hr.redzicleon.library.domain.dto.author.CreateAuthorDto;
 import hr.redzicleon.library.domain.dto.author.UpdateAuthorDto;
 import hr.redzicleon.library.services.AuthorsService;
@@ -68,7 +69,7 @@ public class AuthorsController {
     }
 
     @PatchMapping("")
-    public Iterable<Author> updateOrCreateAuthors(@RequestBody @NotNull Set<hr.redzicleon.library.domain.dto.author.AuthorDto> dto) {
+    public Iterable<Author> updateOrCreateAuthors(@RequestBody @NotNull Set<AuthorDto> dto) {
         return this.authorsService.updateOrCreateAuthors(dto);
     }
 
